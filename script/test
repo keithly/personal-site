@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+if [ -n "${1-}" ]; then
+  # pass arguments to test call. This is useful for calling a single test.
+  pytest --cov-report term-missing --cov=. test/"$1"
+else
+  pytest --cov-report term-missing --cov=. test/
+fi

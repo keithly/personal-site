@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+echo "Deleting temp files..."
+find . -name ".pytest_cache" -exec rm -r {} +
+find . -name "__pycache__" -exec rm -r {} +
+find . -name "*.pyc" -exec rm {} +
+rm -rf .coverage htmlcov

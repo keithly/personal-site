@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+. script/generate
+
+echo "Running Python http.server ..."
+cd _site && python -m http.server
