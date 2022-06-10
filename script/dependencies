@@ -4,13 +4,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-echo "Creating venv in $(pwd)/venv"
-python -m venv venv
-
-echo "Activating venv..."
-source venv/bin/activate
-
-echo "Upgrading pip and setuptools..."
+echo "Installing pip and setuptools..."
 python -m pip install pip==22.1.2 setuptools==62.3.3
 
 echo "Installing requirements..."
