@@ -26,9 +26,9 @@ jobs:
     - name: Install dependencies
       run: |
         ./script/dependencies
-     - name: Lint
-       run: |
-         ./script/lint
+    - name: Lint
+      run: |
+        ./script/lint
     - name: Test with pytest
       run: |
         ./script/test
