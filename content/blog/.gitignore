@@ -1,0 +1,7 @@
+# Blocklist files/folders in same directory as the .gitignore file
+/*
+
+!.gitignore
+
+# Include for use with tests
+!2018-01-01-proin-quam.md
