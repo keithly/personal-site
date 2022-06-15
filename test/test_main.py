@@ -41,7 +41,7 @@ class MainTest(unittest.TestCase):
 
         self.assertIn('<a href="/">Home</a>', s1)
         self.assertIn("<title>Proin Quam &ndash; Software Engineer</title>", s1)
-        self.assertIn("Published on 2018-01-01 by <b>Keith R. Petersen</b>", s1)
+        self.assertIn("2018-01-01", s1)
 
         self.assertIn("<link>http://localhost:8000/</link>", s2)
         self.assertIn("<link>http://localhost:8000/blog/proin-quam/</link>", s2)
@@ -67,7 +67,7 @@ class MainTest(unittest.TestCase):
 
         self.assertIn('<a href="/base/">Home</a>', s1)
         self.assertIn("<title>Proin Quam &ndash; Foo</title>", s1)
-        self.assertIn("Published on 2018-01-01 by <b>Bar</b>", s1)
+        self.assertIn("2018-01-01", s1)
 
         self.assertIn("<link>http://localhost/base/</link>", s2)
         self.assertIn("<link>http://localhost/base/blog/proin-quam/</link>", s2)
