@@ -4,6 +4,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+#. script/lint
+. script/test
 . script/generate
 
 echo "Running Python http.server ..."
