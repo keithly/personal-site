@@ -116,7 +116,9 @@ class PagesTest(unittest.TestCase):
         with open(os.path.join(self.site_path, "placeholder-bar.txt")) as f:
             self.assertEqual(f.read(), "<div>bar:Admin:Bar</div>")
 
-    @pytest.mark.skip(reason="stopped passing on github action despite no apparent changes")
+    @pytest.mark.skip(
+        reason="stopped passing on github action despite no apparent changes"
+    )
     def test_rendered_content_in_summary(self):
         # Test that placeholders are populated in summary if and only if
         # content rendering is enabled.
