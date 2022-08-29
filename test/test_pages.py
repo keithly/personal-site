@@ -116,9 +116,6 @@ class PagesTest(unittest.TestCase):
         with open(os.path.join(self.site_path, "placeholder-bar.txt")) as f:
             self.assertEqual(f.read(), "<div>bar:Admin:Bar</div>")
 
-    @pytest.mark.skip(
-        reason="stopped passing on github action despite no apparent changes"
-    )
     def test_rendered_content_in_summary(self):
         # Test that placeholders are populated in summary if and only if
         # content rendering is enabled.
@@ -133,5 +130,5 @@ class PagesTest(unittest.TestCase):
         with open(os.path.join(self.site_path, "list.txt")) as f:
             self.assertEqual(
                 f.read(),
-                "<div><p>bar:Admin:Bar</p><p>{{ title }}:{{ author }}:Foo</p></div>",
+                "<div><p>{{ title }}:{{ author }}:Foo</p><p>bar:Admin:Bar</p></div>",
             )
