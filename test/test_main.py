@@ -40,7 +40,7 @@ class MainTest(unittest.TestCase):
         shutil.rmtree("_site")
 
         self.assertIn('<a href="/">Keith R. Petersen</a>', s1)
-        self.assertIn("<title>Proin Quam &ndash; Software Engineer</title>", s1)
+        self.assertIn("<title>Proin Quam</title>", s1)
         self.assertIn("2018-01-01", s1)
 
         self.assertIn("<link>http://localhost:8000/</link>", s2)
@@ -66,7 +66,7 @@ class MainTest(unittest.TestCase):
         shutil.rmtree("_site")
 
         self.assertIn('<a href="/base/">Keith R. Petersen</a>', s1)
-        self.assertIn("<title>Proin Quam &ndash; Foo</title>", s1)
+        self.assertIn("<title>Proin Quam</title>", s1)
         self.assertIn("2018-01-01", s1)
 
         self.assertIn("<link>http://localhost/base/</link>", s2)
