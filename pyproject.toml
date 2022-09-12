@@ -2,11 +2,8 @@
 name = "personal_site"
 classifiers = ["Private :: Do Not Upload"]
 version = "0.1.0"
-dependencies = ["markdown_it_py"]
+dependencies = ["markdown_it_py", "pytest", "pytest-cov", "black", "flake8"]
 requires-python = ">=3.10.7"
-
-[project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "black", "flake8"]
 
 [tool.setuptools]
 packages = ["content", "layout", "script", "static", "test"]

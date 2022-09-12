@@ -3,7 +3,6 @@ import os
 import shutil
 import makesite
 from test import path
-import pytest
 
 
 class PagesTest(unittest.TestCase):
