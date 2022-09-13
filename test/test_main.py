@@ -30,7 +30,7 @@ def test_site_exists(setup_teardown):
 
     assert os.path.isfile("_site/foo.txt")
     makesite.main()
-    assert os.path.isfile("_site/foo.txt") == False
+    assert os.path.isfile("_site/foo.txt") is False
 
 
 def test_with_params(setup_teardown):
