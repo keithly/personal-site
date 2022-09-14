@@ -33,16 +33,7 @@ def test_site_exists(setup_teardown):
     assert os.path.isfile("_site/foo.txt") is False
 
 
-def test_with_params(setup_teardown):
-    params = {
-        "base_path": "",
-        "subtitle": "Foo",
-        "author": "Bar",
-        "site_url": "http://localhost:8000",
-    }
-    with open("params.json", "w") as f:
-        json.dump(params, f)
-
+def test_default_params(setup_teardown):
     makesite.main()
 
     with open("_site/blog/test-post/index.html") as f:
@@ -59,3 +50,31 @@ def test_with_params(setup_teardown):
 
     assert "<link>http://localhost:8000/</link>" in s2
     assert "<link>http://localhost:8000/blog/test-post/</link>" in s2
+
+
+def test_json_params(setup_teardown):
+    params = {
+        "base_path": "/base",
+        "subtitle": "Foo",
+        "author": "Bar",
+        "site_url": "http://localhost/base",
+    }
+    with open("params.json", "w") as f:
+        json.dump(params, f)
+
+    makesite.main()
+
+    with open("_site/blog/test-post/index.html") as f:
+        s1 = f.read()
+
+    with open("_site/rss.xml") as f:
+        s2 = f.read()
+
+    shutil.rmtree("_site")
+
+    assert '<a href="/base/">Keith R. Petersen</a>' in s1
+    assert "<title>Test Post</title>" in s1
+    assert "2018-01-01" in s1
+
+    assert "<link>http://localhost/base/</link>" in s2
+    assert "<link>http://localhost/base/blog/test-post/</link>" in s2
