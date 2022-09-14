@@ -1,5 +1,5 @@
+from pathlib import Path
 import makesite
-import os
 import shutil
 import json
 
@@ -10,39 +10,48 @@ from test import path
 
 @pytest.fixture
 def setup_teardown():
-    path.move("_site", "_site.backup")
     path.move("params.json", "params.json.backup")
     path.move("test/2018-01-01-test-post.md", "content/blog/2018-01-01-test-post.md")
     yield
-    path.move("_site.backup", "_site")
     path.move("params.json.backup", "params.json")
     path.move("content/blog/2018-01-01-test-post.md", "test/2018-01-01-test-post.md")
 
 
 def test_site_missing(setup_teardown):
-    makesite.main()
+    makesite.main(Path("_site"))
 
 
-def test_site_exists(setup_teardown):
-    os.mkdir("_site")
-    with open("_site/foo.txt", "w") as f:
+# @pytest.mark.skip()
+def test_site_exists(setup_teardown, tmp_path: Path):
+    """
+    test that the existing site directory is deleted before re-creation
+    also acts as an integration test
+    """
+
+    site_dir = "_blah"
+    output_path = tmp_path / site_dir
+    output_path.mkdir()
+
+    file_path = output_path / "foo.txt"
+    with open(file_path, "w") as f:
         f.write("foo")
 
-    assert os.path.isfile("_site/foo.txt")
-    makesite.main()
-    assert os.path.isfile("_site/foo.txt") is False
+    assert file_path.is_file()
+    makesite.main(output_path)
+    assert file_path.exists() is False
 
 
 def test_default_params(setup_teardown):
-    makesite.main()
+    output_path = Path("_site")
+    makesite.main(output_path)
 
-    with open("_site/blog/test-post/index.html") as f:
+    with open(f"{output_path}/blog/test-post/index.html") as f:
         s1 = f.read()
 
-    with open("_site/rss.xml") as f:
+    with open(f"{output_path}/rss.xml") as f:
         s2 = f.read()
 
-    shutil.rmtree("_site")
+    shutil.rmtree(output_path)
 
     assert '<a href="/">Keith R. Petersen</a>' in s1
     assert "<title>Test Post</title>" in s1
@@ -53,6 +62,7 @@ def test_default_params(setup_teardown):
 
 
 def test_json_params(setup_teardown):
+    output_path = Path("_site")
     params = {
         "base_path": "/base",
         "subtitle": "Foo",
@@ -62,15 +72,15 @@ def test_json_params(setup_teardown):
     with open("params.json", "w") as f:
         json.dump(params, f)
 
-    makesite.main()
+    makesite.main(output_path)
 
-    with open("_site/blog/test-post/index.html") as f:
+    with open(f"{output_path}/blog/test-post/index.html") as f:
         s1 = f.read()
 
-    with open("_site/rss.xml") as f:
+    with open(f"{output_path}/rss.xml") as f:
         s2 = f.read()
 
-    shutil.rmtree("_site")
+    shutil.rmtree(output_path)
 
     assert '<a href="/base/">Keith R. Petersen</a>' in s1
     assert "<title>Test Post</title>" in s1

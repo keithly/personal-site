@@ -28,6 +28,7 @@
 
 
 import os
+from pathlib import Path
 import shutil
 import re
 import glob
@@ -169,11 +170,11 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     fwrite(dst_path, output)
 
 
-def main():
+def main(output_path: Path):
     # Create a new _site directory from scratch.
-    if os.path.isdir("_site"):
-        shutil.rmtree("_site")
-    shutil.copytree("static", "_site")
+    if os.path.isdir(output_path):
+        shutil.rmtree(output_path)
+    shutil.copytree("static", output_path)
 
     # Default parameters.
     params = {
@@ -203,37 +204,40 @@ def main():
     # Create blogs.
     blog_posts = make_pages(
         "content/blog/*.md",
-        "_site/blog/{{ slug }}/index.html",
+        output_path.as_posix() + "/blog/{{ slug }}/index.html",
         post_layout,
         blog="blog",
-        **params
+        **params,
     )
 
     # Create blog list pages.
     make_list(
         blog_posts,
-        "_site/index.html",
+        f"{output_path}/index.html",
         list_layout,
         item_layout,
         blog="blog",
         title="Blog",
-        **params
+        **params,
     )
 
     # Create RSS feeds.
     make_list(
         blog_posts,
-        "_site/rss.xml",
+        f"{output_path}/rss.xml",
         feed_xml,
         item_xml,
         blog="blog",
         title="Blog",
-        **params
+        **params,
     )
 
     # Create site pages.
     make_pages(
-        "content/[!_]*.html", "_site/{{ slug }}/index.html", page_layout, **params
+        "content/[!_]*.html",
+        output_path.as_posix() + "/{{ slug }}/index.html",
+        page_layout,
+        **params,
     )
 
 
@@ -242,4 +246,4 @@ _test = None
 
 
 if __name__ == "__main__":
-    main()
+    main(Path("_site"))
