@@ -170,7 +170,9 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     fwrite(dst_path, output)
 
 
-def main(output_path: Path, params_path: Path = None):
+def main(working_path: Path = Path.cwd()):
+    output_path = working_path / "_site"
+
     # Create a new _site directory from scratch.
     if os.path.isdir(output_path):
         shutil.rmtree(output_path)
@@ -186,7 +188,8 @@ def main(output_path: Path, params_path: Path = None):
     }
 
     # If params.json exists, load it.
-    if params_path and params_path.is_file():
+    params_path = working_path / "params.json"
+    if params_path.exists():
         params.update(json.loads(fread(params_path)))
 
     # Load layouts.
@@ -203,7 +206,7 @@ def main(output_path: Path, params_path: Path = None):
 
     # Create blogs.
     blog_posts = make_pages(
-        "content/blog/*.md",
+        f"{working_path}/content/blog/*.md",
         output_path.as_posix() + "/blog/{{ slug }}/index.html",
         post_layout,
         blog="blog",
@@ -234,7 +237,7 @@ def main(output_path: Path, params_path: Path = None):
 
     # Create site pages.
     make_pages(
-        "content/[!_]*.html",
+        f"{working_path}/content/[!_]*.html",
         output_path.as_posix() + "/{{ slug }}/index.html",
         page_layout,
         **params,
@@ -246,4 +249,4 @@ _test = None
 
 
 if __name__ == "__main__":
-    main(Path("_site"))
+    main()
