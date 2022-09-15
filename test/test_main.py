@@ -10,18 +10,15 @@ from test import path
 
 @pytest.fixture
 def set_site_path(tmp_path: Path):
-    site_dir = "_blah"
-    output_path = tmp_path / site_dir
+    output_path = tmp_path / "_site"
     output_path.mkdir()
     return output_path
 
 
 @pytest.fixture
 def setup_teardown():
-    path.move("params.json", "params.json.backup")
     path.move("test/2018-01-01-test-post.md", "content/blog/2018-01-01-test-post.md")
     yield
-    path.move("params.json.backup", "params.json")
     path.move("content/blog/2018-01-01-test-post.md", "test/2018-01-01-test-post.md")
 
 
@@ -71,10 +68,10 @@ def test_default_params(setup_teardown, set_site_path):
     assert "<link>http://localhost:8000/blog/test-post/</link>" in s2
 
 
-def test_json_params(setup_teardown, set_site_path):
+def test_json_params(setup_teardown, set_site_path, tmp_path):
     output_path = set_site_path
+    params_path = tmp_path / "params.json"
 
-    params_path = Path("params.json")
     params = {
         "base_path": "/base",
         "subtitle": "Foo",
