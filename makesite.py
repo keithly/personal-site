@@ -170,7 +170,7 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     fwrite(dst_path, output)
 
 
-def main(output_path: Path):
+def main(output_path: Path, params_path: Path = None):
     # Create a new _site directory from scratch.
     if os.path.isdir(output_path):
         shutil.rmtree(output_path)
@@ -186,8 +186,8 @@ def main(output_path: Path):
     }
 
     # If params.json exists, load it.
-    if os.path.isfile("params.json"):
-        params.update(json.loads(fread("params.json")))
+    if params_path and params_path.is_file():
+        params.update(json.loads(fread(params_path)))
 
     # Load layouts.
     page_layout = fread("layout/page.html")

@@ -8,4 +8,4 @@ echo "Deleting temp files..."
 find . -name ".pytest_cache" -exec rm -r {} +
 find . -name "__pycache__" -exec rm -r {} +
 find . -name "*.pyc" -exec rm {} +
-rm -rf .coverage htmlcov
+rm -rf .coverage htmlcov mydir
