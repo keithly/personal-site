@@ -36,6 +36,8 @@ import sys
 import json
 import datetime
 
+from markdown_it import MarkdownIt
+
 
 def fread(filename):
     """Read file and close the file."""
@@ -98,19 +100,10 @@ def read_content(filename):
     # Separate content from headers.
     text = text[end:]
 
-    # Convert Markdown content to HTML.
-    if filename.endswith((".md", ".mkd", ".mkdn", ".mdown", ".markdown")):
-        try:
-            if _test == "ImportError":
-                raise ImportError("Error forced by test")
-            from markdown_it import MarkdownIt
-
-            md = MarkdownIt("commonmark", {"typographer": True})
-            md.enable(["replacements", "smartquotes"])
-
-            text = md.render(text)
-        except ImportError as e:
-            log("WARNING: Cannot render Markdown in {}: {}", filename, str(e))
+    # assume all content is in markdown
+    md = MarkdownIt("commonmark", {"typographer": True})
+    md.enable(["replacements", "smartquotes"])
+    text = md.render(text)
 
     # Update the dictionary with content and RFC 2822 date.
     content.update({"content": text, "rfc_2822_date": rfc_2822_format(content["date"])})

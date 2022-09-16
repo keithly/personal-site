@@ -40,9 +40,9 @@ class PagesTest(unittest.TestCase):
         tpl = "<div>{{ content }}</div>"
         makesite.make_pages(src, dst, tpl)
         with open(os.path.join(self.site_path, "foo.txt")) as f:
-            self.assertEqual(f.read(), "<div>Foo</div>")
+            self.assertEqual(f.read(), "<div><p>Foo</p>\n</div>")
         with open(os.path.join(self.site_path, "bar.txt")) as f:
-            self.assertEqual(f.read(), "<div>Bar</div>")
+            self.assertEqual(f.read(), "<div><p>Bar</p>\n</div>")
 
     def test_pages_dated(self):
         src = os.path.join(self.blog_path, "2*.txt")
@@ -50,9 +50,9 @@ class PagesTest(unittest.TestCase):
         tpl = "<div>{{ content }}</div>"
         makesite.make_pages(src, dst, tpl)
         with open(os.path.join(self.site_path, "foo.txt")) as f:
-            self.assertEqual(f.read(), "<div>Foo</div>")
+            self.assertEqual(f.read(), "<div><p>Foo</p>\n</div>")
         with open(os.path.join(self.site_path, "bar.txt")) as f:
-            self.assertEqual(f.read(), "<div>Bar</div>")
+            self.assertEqual(f.read(), "<div><p>Bar</p>\n</div>")
 
     def test_pages_layout_params(self):
         src = os.path.join(self.blog_path, "2*.txt")
@@ -60,9 +60,9 @@ class PagesTest(unittest.TestCase):
         tpl = "<div>{{ slug }}:{{ title }}:{{ date }}:{{ content }}</div>"
         makesite.make_pages(src, dst, tpl, title="Lorem")
         with open(os.path.join(self.site_path, "foo.txt")) as f:
-            self.assertEqual(f.read(), "<div>foo:Lorem:2018-01-01:Foo</div>")
+            self.assertEqual(f.read(), "<div>foo:Lorem:2018-01-01:<p>Foo</p>\n</div>")
         with open(os.path.join(self.site_path, "bar.txt")) as f:
-            self.assertEqual(f.read(), "<div>bar:Lorem:2018-01-02:Bar</div>")
+            self.assertEqual(f.read(), "<div>bar:Lorem:2018-01-02:<p>Bar</p>\n</div>")
 
     def test_pages_return_value(self):
         src = os.path.join(self.blog_path, "2*.txt")
@@ -81,9 +81,9 @@ class PagesTest(unittest.TestCase):
         tpl = "{{ title }}:{{ tag }}:{{ content }}"
         makesite.make_pages(src, dst, tpl)
         with open(os.path.join(self.site_path, "header-foo.txt")) as f:
-            self.assertEqual(f.read(), "{{ title }}:foo:Foo")
+            self.assertEqual(f.read(), "{{ title }}:foo:<p>Foo</p>\n")
         with open(os.path.join(self.site_path, "header-bar.txt")) as f:
-            self.assertEqual(f.read(), "bar:{{ tag }}:Bar")
+            self.assertEqual(f.read(), "bar:{{ tag }}:<p>Bar</p>\n")
 
     def test_content_no_rendering(self):
         # Test that placeholders are not populated in content rendering
@@ -93,7 +93,9 @@ class PagesTest(unittest.TestCase):
         tpl = "<div>{{ content }}</div>"
         makesite.make_pages(src, dst, tpl, author="Admin")
         with open(os.path.join(self.site_path, "placeholder-foo.txt")) as f:
-            self.assertEqual(f.read(), "<div>{{ title }}:{{ author }}:Foo</div>")
+            self.assertEqual(
+                f.read(), "<div><p>{{ title }}:{{ author }}:Foo</p>\n</div>"
+            )
 
     def test_content_rendering_via_kwargs(self):
         # Test that placeholders are populated in content rendering when
@@ -103,7 +105,7 @@ class PagesTest(unittest.TestCase):
         tpl = "<div>{{ content }}</div>"
         makesite.make_pages(src, dst, tpl, author="Admin", render="yes")
         with open(os.path.join(self.site_path, "placeholder-foo.txt")) as f:
-            self.assertEqual(f.read(), "<div>foo:Admin:Foo</div>")
+            self.assertEqual(f.read(), "<div><p>foo:Admin:Foo</p>\n</div>")
 
     def test_content_rendering_via_header(self):
         # Test that placeholders are populated in content rendering when
@@ -113,7 +115,7 @@ class PagesTest(unittest.TestCase):
         tpl = "<div>{{ content }}</div>"
         makesite.make_pages(src, dst, tpl, author="Admin")
         with open(os.path.join(self.site_path, "placeholder-bar.txt")) as f:
-            self.assertEqual(f.read(), "<div>bar:Admin:Bar</div>")
+            self.assertEqual(f.read(), "<div><p>bar:Admin:Bar</p>\n</div>")
 
     def test_rendered_content_in_summary(self):
         # Test that placeholders are populated in summary if and only if
