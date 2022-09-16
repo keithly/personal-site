@@ -11,9 +11,8 @@ class ContentTest(unittest.TestCase):
         self.blog_path = path.temppath("blog")
         self.undated_path = os.path.join(self.blog_path, "foo.txt")
         self.dated_path = os.path.join(self.blog_path, "2018-01-01-foo.txt")
-        self.normal_post_path = os.path.join(self.blog_path, "baz.txt")
+        self.header_post_path = os.path.join(self.blog_path, "baz.txt")
         self.md_post_path = os.path.join(self.blog_path, "qux.md")
-        self.no_md_post_path = os.path.join(self.blog_path, "qux.txt")
 
         os.makedirs(self.blog_path)
 
@@ -23,13 +22,10 @@ class ContentTest(unittest.TestCase):
         with open(self.dated_path, "w") as f:
             f.write("hello world")
 
-        with open(self.normal_post_path, "w") as f:
+        with open(self.header_post_path, "w") as f:
             f.write("<!-- a: 1 -->\n<!-- b: 2 -->\nFoo")
 
         with open(self.md_post_path, "w") as f:
-            f.write("*Foo*")
-
-        with open(self.no_md_post_path, "w") as f:
             f.write("*Foo*")
 
     def tearDown(self):
@@ -56,7 +52,7 @@ class ContentTest(unittest.TestCase):
         self.assertEqual(content["slug"], "foo")
 
     def test_content_headers(self):
-        content = makesite.read_content(self.normal_post_path)
+        content = makesite.read_content(self.header_post_path)
         self.assertEqual(content["a"], "1")
         self.assertEqual(content["b"], "2")
         self.assertEqual(content["content"], "<p>Foo</p>\n")
