@@ -237,9 +237,5 @@ def main(working_path: Path = Path.cwd()):
     )
 
 
-# Test parameter to be set temporarily by unit tests.
-_test = None
-
-
 if __name__ == "__main__":
     main()
