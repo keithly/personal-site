@@ -2,6 +2,11 @@
 
 # The MIT License (MIT)
 #
+# Copyright (c) 2022 Keith R. Petersen
+#
+# This software is a derivative of the original makesite.py. 
+# The license text of the original makesite.py is included below.
+#
 # Copyright (c) 2018 Sunaina Pai
 #
 # Permission is hereby granted, free of charge, to any person obtaining
