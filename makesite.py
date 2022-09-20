@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2022 Keith R. Petersen
 #
-# This software is a derivative of the original makesite.py. 
+# This software is a derivative of the original makesite.py.
 # The license text of the original makesite.py is included below.
 #
 # Copyright (c) 2018 Sunaina Pai
