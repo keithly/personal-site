@@ -7,8 +7,9 @@
     --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   
     /* Default (light) theme */
-    --bg: #fff;
-    --accent-bg: #f5f7ff;
+    --bg: #fdfdfa;
+    --accent-bg: #c15748;
+    --header-text: var(--bg);
     --text: #212121;
     --text-light: #585858;
     --border: #d8dae1;
@@ -68,7 +69,7 @@
   /* Make the body a nice central block */
   body {
     color: var(--text);
-    background-color: var(--bg);
+    background: var(--bg);
     font-size: 1.15rem;
     line-height: 1.5;
     display: grid;
@@ -81,10 +82,10 @@
   
   /* Make the header bg full width, but the content inline with body */
   body > header {
-    background-color: var(--accent-bg);
+    background: var(--accent-bg);
     border-bottom: 1px solid var(--border);
-    text-align: center;
-    padding: 0 0.5rem 2rem 0.5rem;
+    /* text-align: center; */
+    /* padding: 0 0.5rem 2rem 0.5rem; */
     grid-column: 1 / -1;
   }
   
@@ -188,7 +189,7 @@
   label[type="button"] {
     border: none;
     border-radius: 5px;
-    background-color: var(--accent);
+    background: var(--accent);
     font-size: 1rem;
     color: var(--bg);
     padding: 0.7rem 0.9rem;
@@ -211,7 +212,7 @@
   textarea:disabled,
   select:disabled {
     cursor: not-allowed;
-    background-color: var(--disabled);
+    background: var(--disabled);
   }
   
   input[type="range"] {
@@ -241,7 +242,7 @@
   
   /* Format navigation */
   header > nav {
-    font-size: 1rem;
+    /* font-size: 1rem; */
     line-height: 2;
     padding: 1rem 0 0 0;
   }
@@ -269,12 +270,12 @@
   header > nav a,
   header > nav a:visited {
     margin: 0 0.5rem 1rem 0.5rem;
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    color: var(--text);
+    border: none;
+    padding: 0;
+    color: var(--header-text);
     display: inline-block;
-    padding: 0.1rem 1rem;
     text-decoration: none;
+    font-weight: bold;
   }
   
   header > nav a:hover {
@@ -294,7 +295,7 @@
   
   /* Consolidate box styling */
   aside, details, pre, progress {
-    background-color: var(--accent-bg);
+    background: var(--accent-bg);
     border: 1px solid var(--border);
     border-radius: 5px;
     margin-bottom: 1rem;
@@ -389,13 +390,13 @@
   }
   
   th {
-    background-color: var(--accent-bg);
+    background: var(--accent-bg);
     font-weight: bold;
   }
   
   tr:nth-child(even) {
     /* Set every other cell slightly darker. Improves readability. */
-    background-color: var(--accent-bg);
+    background: var(--accent-bg);
   }
   
   table caption {
@@ -412,7 +413,7 @@
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     color: var(--text);
-    background-color: var(--bg);
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 5px;
     box-shadow: none;
@@ -449,7 +450,7 @@
   
   input[type="checkbox"]:checked,
   input[type="radio"]:checked {
-    background-color: var(--accent);
+    background: var(--accent);
   }
   
   input[type="checkbox"]:checked::after {
@@ -461,7 +462,7 @@
     position: absolute;
     top: 0.05em;
     left: 0.17em;
-    background-color: transparent;
+    background: transparent;
     border-right: solid var(--bg) 0.08em;
     border-bottom: solid var(--bg) 0.08em;
     font-size: 1.8em;
@@ -475,7 +476,7 @@
     border-radius: 100%;
     position: absolute;
     top: 0.125em;
-    background-color: var(--bg);
+    background: var(--bg);
     left: 0.125em;
     font-size: 32px;
   }
@@ -516,7 +517,7 @@
   mark {
     padding: 2px 5px;
     border-radius: 4px;
-    background-color: var(--marked);
+    background: var(--marked);
   }
   
   img,
@@ -587,36 +588,3 @@
     margin: 0;
     padding: 0;
   }
-  
-  /* Progress bars */
-  /* Declarations are repeated because you */
-  /* cannot combine vendor-specific selectors */
-  progress {
-    width: 100%;
-  }
-  
-  progress:indeterminate {
-    background-color: var(--accent-bg);
-  }
-  
-  progress::-webkit-progress-bar {
-    border-radius: 5px;
-    background-color: var(--accent-bg);
-  }
-  
-  progress::-webkit-progress-value {
-    border-radius: 5px;
-    background-color: var(--accent);
-  }
-  
-  progress::-moz-progress-bar {
-    border-radius: 5px;
-    background-color: var(--accent);
-    transition-property: width;
-    transition-duration: 0.3s;
-  }
-  
-  progress:indeterminate::-moz-progress-bar {
-    background-color: var(--accent-bg);
-  }
-  
