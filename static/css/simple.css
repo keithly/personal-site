@@ -8,7 +8,9 @@
   
     /* Default (light) theme */
     --bg: #fdfdfa;
-    --accent-bg: #c15748;
+    --accent-bg: #ecc8c3;
+    --header-bg: #c15748;
+    --header-hover: #000;
     --header-text: var(--bg);
     --text: #212121;
     --text-light: #585858;
@@ -77,27 +79,13 @@
   
   /* Make the header bg full width, but the content inline with body */
   body > header {
-    background: var(--accent-bg);
+    background: var(--header-bg);
     border-bottom: 1px solid var(--border);
     display: grid;
     grid-template-columns: 1fr min(45rem, 90%) 1fr;
-    /* text-align: center; */
-    /* padding: 0 0.5rem 2rem 0.5rem; */
-    /* grid-column: 1 / -1; */
   }
-  
-  /* body > header h1 {
-    max-width: 1200px;
-    margin: 1rem auto;
-  }
-  
-  body > header p {
-    max-width: 40rem;
-    margin: 1rem auto;
-  } */
   
   main {
-    padding-top: 1.5rem;
     display: grid;
     grid-template-columns: 1fr min(45rem, 90%) 1fr;
   }
@@ -107,8 +95,7 @@
   }
   
   body > footer {
-    margin-top: 4rem;
-    padding: 2rem 1rem 1.5rem 1rem;
+    margin-top: 1rem;
     color: var(--text-light);
     font-size: 0.9rem;
     text-align: center;
@@ -117,21 +104,22 @@
   
   /* Format headers */
   h1 {
-    font-size: 3rem;
+    font-size: 2.25rem;
+    margin: 1.25rem 0 1rem 0
   }
   
   h2 {
-    font-size: 2.6rem;
-    margin-top: 3rem;
+    font-size: 1.5rem;
+    margin: 1rem 0 0 0;
   }
   
   h3 {
-    font-size: 2rem;
-    margin-top: 3rem;
+    font-size: 1.3rem;
+    margin: 1rem 0 0 0;
   }
   
   h4 {
-    font-size: 1.44rem;
+    font-size: 1.25rem;
   }
   
   h5 {
@@ -154,71 +142,15 @@
     line-height: 1.1;
   }
   
-  /* Reduce header size on mobile */
-  @media only screen and (max-width: 720px) {
-    h1 {
-      font-size: 2.5rem;
-    }
-  
-    h2 {
-      font-size: 2.1rem;
-    }
-  
-    h3 {
-      font-size: 1.75rem;
-    }
-  
-    h4 {
-      font-size: 1.25rem;
-    }
-  }
-  
   /* Format links & buttons */
   a,
   a:visited {
-    color: var(--accent);
-  }
-  
-  a:hover {
+    color: var(--text);
     text-decoration: none;
   }
   
-  button,
-  [role="button"],
-  input[type="submit"],
-  input[type="reset"],
-  input[type="button"],
-  label[type="button"] {
-    border: none;
-    border-radius: 5px;
-    background: var(--accent);
-    font-size: 1rem;
-    color: var(--bg);
-    padding: 0.7rem 0.9rem;
-    margin: 0.5rem 0;
-  }
-  
-  button[disabled],
-  [role="button"][aria-disabled="true"],
-  input[type="submit"][disabled],
-  input[type="reset"][disabled],
-  input[type="button"][disabled],
-  input[type="checkbox"][disabled],
-  input[type="radio"][disabled],
-  select[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  input:disabled,
-  textarea:disabled,
-  select:disabled {
-    cursor: not-allowed;
-    background: var(--disabled);
-  }
-  
-  input[type="range"] {
-    padding: 0;
+  a:hover, a:active {
+    text-decoration: underline;
   }
   
   /* Set the cursor to '?' while hovering over an abbreviation */
@@ -226,51 +158,13 @@
     cursor: help;
   }
   
-  button:focus,
-  button:enabled:hover,
-  [role="button"]:focus,
-  [role="button"]:not([aria-disabled="true"]):hover,
-  input[type="submit"]:focus,
-  input[type="submit"]:enabled:hover,
-  input[type="reset"]:focus,
-  input[type="reset"]:enabled:hover,
-  input[type="button"]:focus,
-  input[type="button"]:enabled:hover,
-  label[type="button"]:focus,
-  label[type="button"]:hover {
-    filter: brightness(1.4);
-    cursor: pointer;
-  }
-  
   /* Format navigation */
   header > nav {
-    /* font-size: 1rem; */
-    line-height: 2;
     padding: 1rem 0 0 0;
     grid-column: 2;
     width: 100%;
   }
-  
-  /* Use flexbox to allow items to wrap, as needed */
-  header > nav ul,
-  header > nav ol {
-    align-content: space-around;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* List items are inline elements, make them behave more like blocks */
-  header > nav ul li,
-  header > nav ol li {
-    display: inline-block;
-  }
-  
+
   header > nav a,
   header > nav a:visited {
     margin: 0 0.5rem 1rem 0.5rem;
@@ -283,8 +177,7 @@
   }
   
   header > nav a:hover {
-    filter: var(--hover-brightness);
-    cursor: pointer;
+    color: #000;
   }
   
   header > nav .home a:first-child {
@@ -324,16 +217,38 @@
     }
   }
   
-  article, fieldset {
+  fieldset {
     border: 1px solid var(--border);
     padding: 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
   }
   
-  article h2:first-child,
-  section h2:first-child {
+  article {
+    margin-bottom: 1rem;
+  }
+
+  article > header {
+    margin-bottom: 0.5rem;
+  }
+
+  article h2 {
+    margin: 0;
     margin-top: 1rem;
+  }
+
+  article time {
+    margin-top: 0;
+    font-size: 0.8em;
+    color: var(--text-light);
+  }
+
+  article .more {
+    font-size: 0.8em;
+  }
+
+  p.summary {
+    margin: 0;
   }
   
   section {
@@ -408,109 +323,6 @@
   table caption {
     font-weight: bold;
     margin-bottom: 0.5rem;
-  }
-  
-  /* Format forms */
-  textarea,
-  select,
-  input {
-    font-size: inherit;
-    font-family: inherit;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    box-shadow: none;
-    max-width: 100%;
-    display: inline-block;
-  }
-  label {
-    display: block;
-  }
-  textarea:not([cols]) {
-    width: 100%;
-  }
-  
-  /* Add arrow to drop-down */
-  select:not([multiple]) {
-    background-image: linear-gradient(45deg, transparent 49%, var(--text) 51%),
-      linear-gradient(135deg, var(--text) 51%, transparent 49%);
-    background-position: calc(100% - 15px), calc(100% - 10px);
-    background-size: 5px 5px, 5px 5px;
-    background-repeat: no-repeat;
-    padding-right: 25px;
-  }
-  
-  /* checkbox and radio button style */
-  input[type="checkbox"],
-  input[type="radio"] {
-    vertical-align: middle;
-    position: relative;
-  }
-  
-  input[type="radio"] {
-    border-radius: 100%;
-  }
-  
-  input[type="checkbox"]:checked,
-  input[type="radio"]:checked {
-    background: var(--accent);
-  }
-  
-  input[type="checkbox"]:checked::after {
-    /* Creates a rectangle with colored right and bottom borders which is rotated to look like a check mark */
-    content: " ";
-    width: 0.18em;
-    height: 0.32em;
-    border-radius: 0;
-    position: absolute;
-    top: 0.05em;
-    left: 0.17em;
-    background: transparent;
-    border-right: solid var(--bg) 0.08em;
-    border-bottom: solid var(--bg) 0.08em;
-    font-size: 1.8em;
-    transform: rotate(45deg);
-  }
-  input[type="radio"]:checked::after {
-    /* creates a colored circle for the checked radio button  */
-    content: " ";
-    width: 0.25em;
-    height: 0.25em;
-    border-radius: 100%;
-    position: absolute;
-    top: 0.125em;
-    background: var(--bg);
-    left: 0.125em;
-    font-size: 32px;
-  }
-  
-  /* Makes input fields wider on smaller screens */
-  @media only screen and (max-width: 720px) {
-    textarea,
-    select,
-    input {
-      width: 100%;
-    }
-  }
-  
-  /* Ensures the checkbox and radio inputs do not have a set width like other input fields */
-  input[type="checkbox"],
-  input[type="radio"] {
-    width: auto;
-  }
-  
-  /* Set a height for color input */
-  input[type="color"] {
-    height: 2.5rem;
-    padding:  0.2rem;
-  }
-  
-  /* do not show border around file selector button */
-  input[type="file"] {
-    border: 0;
   }
   
   /* Misc body elements */
@@ -593,4 +405,26 @@
     background: none;
     margin: 0;
     padding: 0;
+  }
+
+  /* RSS */
+  .rss {
+    float: right;
+    padding: 0.2rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .rss:link, .rss:visited, .rss:hover, .rss:active {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .rss:link, .rss:visited {
+    background: #ff6600;
+  }
+
+  .rss:hover, .rss:active {
+    background: #ff8822;
   }

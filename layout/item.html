@@ -1,10 +1,11 @@
 <article>
-<h2><a href="{{ base_path }}/{{ blog }}/{{ slug }}/">{{ title }}</a></h2>
-<time class="meta" datetime="{{ date }}">{{ date }}</time>
+    <header>
+        <h2><a href="{{ base_path }}/{{ blog }}/{{ slug }}/">{{ title }}</a></h2>
+        <time datetime="{{ date }}">{{ date }}</time>
+    </header>
 <p class="summary">
-{{ summary }}&nbsp;<a class="more" href="{{ base_path }}/{{ blog }}/{{ slug }}/">...</a>
+{{ summary }}<a href="{{ base_path }}/{{ blog }}/{{ slug }}/">...</a>
 </p>
-<div>
-<a class="more" href="{{ base_path }}/{{ blog }}/{{ slug }}/">Read More</a>
-</div>
+<a class="more" href="{{ base_path }}/{{ blog }}/{{ slug }}/">Read more</a>
 </article>
+<!-- <hr> -->
