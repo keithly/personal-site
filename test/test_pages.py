@@ -125,7 +125,7 @@ class PagesTest(unittest.TestCase):
         list_dst = os.path.join(self.site_path, "list.txt")
         post_layout = ""
         list_layout = "<div>{{ content }}</div>"
-        item_layout = "<p>{{ summary }}</p>"
+        item_layout = "{{ summary }}"
         posts = makesite.make_pages(src, post_dst, post_layout, author="Admin")
         makesite.make_list(posts, list_dst, list_layout, item_layout)
         with open(os.path.join(self.site_path, "list.txt")) as f:

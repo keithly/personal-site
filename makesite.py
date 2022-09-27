@@ -41,6 +41,7 @@ import sys
 import json
 import datetime
 
+from lxml import html
 from markdown_it import MarkdownIt
 
 
@@ -65,9 +66,15 @@ def log(msg, *args):
     sys.stderr.write(msg.format(*args) + "\n")
 
 
-def truncate(text, words=25):
-    """Remove tags and truncate text to the specified number of words."""
-    return " ".join(re.sub("(?s)<.*?>", " ", text).split()[:words])
+def get_post_first_p(text):
+    """Get the first p from the post as html."""
+    rendered_html = render_md(text)
+    tree = html.fromstring(rendered_html)
+    first_p = html.tostring(
+        tree.xpath("/descendant::p[1]")[0], encoding="unicode"
+    ).strip()
+
+    return first_p
 
 
 def read_headers(text):
@@ -82,6 +89,12 @@ def rfc_2822_format(date_str):
     """Convert yyyy-mm-dd date string to RFC 2822 format date string."""
     d = datetime.datetime.strptime(date_str, "%Y-%m-%d")
     return d.strftime("%a, %d %b %Y %H:%M:%S +0000")
+
+
+def render_md(input):
+    md = MarkdownIt("commonmark", {"typographer": True})
+    md.enable(["replacements", "smartquotes"])
+    return md.render(input)
 
 
 def read_content(filename):
@@ -106,9 +119,7 @@ def read_content(filename):
     text = text[end:]
 
     # assume all content is in markdown
-    md = MarkdownIt("commonmark", {"typographer": True})
-    md.enable(["replacements", "smartquotes"])
-    text = md.render(text)
+    text = render_md(text)
 
     # Update the dictionary with content and RFC 2822 date.
     content.update({"content": text, "rfc_2822_date": rfc_2822_format(content["date"])})
@@ -156,7 +167,7 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     items = []
     for post in posts:
         item_params = dict(params, **post)
-        item_params["summary"] = truncate(post["content"])
+        item_params["summary"] = get_post_first_p(post["content"])
         item = render(item_layout, **item_params)
         items.append(item)
 
