@@ -3,9 +3,7 @@
 <link>{{ site_url }}/{{ blog }}/{{ slug }}/</link>
 <description>
 <![CDATA[
-<p>
-{{ summary }}&nbsp;<a href="{{ site_url }}/{{ blog }}/{{ slug }}/">...</a>
-</p>
+{{ summary }}
 <p><a href="{{ site_url }}/{{ blog }}/{{ slug }}/">Read More</a></p>
 ]]>
 </description>
