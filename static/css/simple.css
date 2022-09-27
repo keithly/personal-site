@@ -14,8 +14,8 @@
     --header-text: var(--bg);
     --text: #212121;
     --text-light: #585858;
-    --border: #d8dae1;
-    --accent: #0d47a1;
+    --border: #dedede;
+    --accent: var(--header-bg);
     --code: #d81b60;
     --preformatted: #444;
     --marked: #ffdd33;
@@ -95,17 +95,25 @@
   }
   
   body > footer {
-    margin-top: 1rem;
     color: var(--text-light);
     font-size: 0.9rem;
     text-align: center;
     border-top: 1px solid var(--border);
+    padding: 1rem;
+  }
+
+  footer a {
+    margin-right: 1em;
+  }
+
+  footer a:last-child {
+      margin-right: 0;
   }
   
   /* Format headers */
   h1 {
     font-size: 2.25rem;
-    margin: 1.25rem 0 1rem 0
+    margin: 1.25rem 0
   }
   
   h2 {
@@ -143,8 +151,7 @@
   }
   
   /* Format links & buttons */
-  a,
-  a:visited {
+  a, a:visited {
     color: var(--text);
     text-decoration: none;
   }
@@ -223,10 +230,6 @@
     border-radius: 5px;
     margin-bottom: 1rem;
   }
-  
-  article {
-    margin-bottom: 1rem;
-  }
 
   article > header {
     margin-bottom: 0.5rem;
@@ -234,20 +237,40 @@
 
   article h2 {
     margin: 0;
-    margin-top: 1rem;
   }
 
   article time {
     margin-top: 0;
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: var(--text-light);
   }
 
-  article .more {
-    font-size: 0.8em;
+  article.index {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
-  p.summary {
+  article.index:first-of-type {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+
+  article.index:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  article.index p > a, article.index p > a:visited {
+    text-decoration: underline;
+  }
+
+  article .more {
+    text-decoration: underline;
+    font-size: 0.8rem;
+  }
+
+  article.index p {
     margin: 0;
   }
   
