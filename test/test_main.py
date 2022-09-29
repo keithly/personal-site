@@ -54,7 +54,7 @@ def test_default_params(setup_content_site_path: Path, tmp_path: Path):
         s2 = f.read()
 
     assert '<a href="/">Keith R. Petersen</a>' in s1
-    assert "<title>Test Post</title>" in s1
+    assert "<title>Test Post &ndash; Keith R. Petersen</title>" in s1
     assert "2018-01-01" in s1
 
     assert "<link>http://localhost:8000/</link>" in s2
@@ -83,7 +83,7 @@ def test_json_params(setup_content_site_path: Path, tmp_path: Path):
         s2 = f.read()
 
     assert '<a href="/base/">Keith R. Petersen</a>' in s1
-    assert "<title>Test Post</title>" in s1
+    assert "<title>Test Post &ndash; Keith R. Petersen</title>" in s1
     assert "2018-01-01" in s1
 
     assert "<link>http://localhost/base/</link>" in s2
