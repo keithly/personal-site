@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>{{ title }} &ndash; Keith R. Petersen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="{{ base_path }}/css/simple.css">
-
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ base_path }}/css/simple.css"
+   >
     <meta name="description" content="The website of Keith R. Petersen">
     <meta property="og:title" content="{{ title }} &ndash; Keith R. Petersen">
-    <meta property="og:description" content="The website of Keith R. Petersen">
+    <meta
+      property="og:description"
+      content="The website of Keith R. Petersen"
+   >
     <meta property="og:type" content="website">
-</head>
-
-<body>
-
-<header>
-<nav>
-    <span class="home"><a href="{{ base_path }}/">Keith R. Petersen</a></span><span class="links"><a href="{{ base_path }}/Keith-R-Petersen-resume.pdf">R&eacute;sum&eacute;</a><a href="{{ base_path }}/about/">About</a></span>
-</nav>
-</header>
-
-<main>
-{{ content }}
-</main>
-
-<footer>
-    <img src="/img/op-fungi.png" alt="decorative fungi">
-<p>&copy; 2007 &ndash; {{ current_year }} Keith R. Petersen</p>
-<p>
-    <a href="https://github.com/keithly">GitHub</a><a href="https://www.linkedin.com/in/keithpetersen">LinkedIn</a><a href="mailto:krp@keithrpetersen.com">krp@keithrpetersen.com</a>
-</p>
-</footer>
-
-</body>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <span class="home"
+          ><a href="{{ base_path }}/">Keith R. Petersen</a></span
+        ><span class="links"
+          ><a href="{{ base_path }}/Keith-R-Petersen-resume.pdf"
+            >R&eacute;sum&eacute;</a
+          ><a href="{{ base_path }}/about/">About</a></span
+        >
+      </nav>
+    </header>
+    <main>{{ content }}</main>
+    <footer>
+      <img src="/img/op-fungi.png" alt="decorative fungi">
+      <p>&copy; 2007 &ndash; {{ current_year }} Keith R. Petersen</p>
+      <p>
+        <a href="https://github.com/keithly">GitHub</a
+        ><a href="https://www.linkedin.com/in/keithpetersen">LinkedIn</a
+        ><a href="mailto:krp@keithrpetersen.com">krp@keithrpetersen.com</a>
+      </p>
+    </footer>
+  </body>
 </html>

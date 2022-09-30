@@ -1,470 +1,465 @@
 /* Global variables. */
 :root {
-    /* Set sans-serif & mono fonts */
-    --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
-      "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
-      "Helvetica Neue", sans-serif;
-    --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  
-    /* Default (light) theme */
-    --bg: #f9f9f5;
-    --accent-bg: #ecc8c3;
-    --header-bg: #ab4a38;
+  /* Set sans-serif & mono fonts */
+  --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
+    "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
+    "Helvetica Neue", sans-serif;
+  --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+
+  /* Default (light) theme */
+  --bg: #f9f9f5;
+  --accent-bg: #ecc8c3;
+  --header-bg: #ab4a38;
+  --header-hover: var(--header-text);
+  --header-text: #fff;
+  --text: #212121;
+  --text-light: #585858;
+  --border: #dedede;
+  --accent: var(--header-bg);
+  --code: #d81b60;
+  --preformatted: #444;
+  --marked: #ffdd33;
+  --disabled: #efefef;
+  /* Brightness filter is applied on header links in hover state */
+  --hover-brightness: brightness(0.6);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #1c1c1c;
+    --header-bg: #8a3024;
+    --accent-bg: #2b2b2b;
     --header-hover: var(--header-text);
-    --header-text: #fff;
-    --text: #212121;
-    --text-light: #585858;
-    --border: #dedede;
-    --accent: var(--header-bg);
-    --code: #d81b60;
-    --preformatted: #444;
-    --marked: #ffdd33;
-    --disabled: #efefef;
-    /* Brightness filter is applied on header links in hover state */
-    --hover-brightness: brightness(0.6);
+    --header-text: #f9f9f5;
+    --text: #d2cec8;
+    --text-light: #ababab;
+    --border: #666;
+    --code: #f06292;
+    --preformatted: #ccc;
+    --disabled: #111;
+    /* Brightness filter in hover state is updated to improve visibility in dark-mode */
+    --hover-brightness: brightness(1.4);
   }
-  
-  /* Dark theme */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color-scheme: dark;
-      --bg: #1c1c1c;
-      --header-bg: #8a3024;
-      --accent-bg: #2b2b2b;
-      --header-hover: var(--header-text);
-      --header-text: #f9f9f5;
-      --text: #d2cec8;
-      --text-light: #ababab;
-      --border: #666;
-      --code: #f06292;
-      --preformatted: #ccc;
-      --disabled: #111;
-      /* Brightness filter in hover state is updated to improve visibility in dark-mode */
-      --hover-brightness: brightness(1.4);
-    }
-    /* Add a bit of transparency so light media isn't so glaring in dark mode */
-    img,
-    video {
-      opacity: 0.8;
-    }
-  }
-  
-  /* Reset box-sizing */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  
-  /* Reset default appearance */
-  textarea,
-  select,
-  input,
-  progress {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
-  
-  html {
-    /* Set the font globally */
-    font-family: var(--sans-font);
-    scroll-behavior: smooth;
-  }
-  
-  /* Make the body a nice central block */
-  body {
-    color: var(--text);
-    background: var(--bg);
-    font-size: 1.15rem;
-    line-height: 1.5;
-    margin: 0;
-  }
-  
-  /* Make the header bg full width, but the content inline with body */
-  body > header {
-    background: var(--header-bg);
-    border-bottom: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr min(45rem, 90%) 1fr;
-  }
-  
-  main {
-    display: grid;
-    grid-template-columns: 1fr min(45rem, 90%) 1fr;
-  }
-
-  main > * {
-    grid-column: 2;
-  }
-  
-  body > footer {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 1rem;
-  }
-
-  footer img {
-    width: 13%;
-  }
-
-    /* Make aside full-width on mobile */
-    @media only screen and (max-width: 720px) {
-      footer img {
-        width: 46%;
-      }
-    }
-
-  footer a, footer a:visited {
-    color: var(--text-light);
-  }
-
-  footer a {
-    margin-right: 1em;
-  }
-
-  footer a:last-child {
-      margin-right: 0;
-  }
-
-  p {
-    margin: 1rem 0;
-  }
-  
-  /* Format headers */
-  h1 {
-    font-size: 2.25rem;
-    margin: 1.25rem 0
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    margin: 1rem 0 0 0;
-  }
-  
-  h3 {
-    font-size: 1.3rem;
-    margin: 1rem 0 0 0;
-  }
-  
-  h4 {
-    font-size: 1.25rem;
-  }
-  
-  h5 {
-    font-size: 1.15rem;
-  }
-  
-  h6 {
-    font-size: 0.96rem;
-  }
-  
-  /* Prevent long strings from overflowing container */
-  p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-  }
-  
-  /* Fix line height when title wraps */
-  h1,
-  h2,
-  h3 {
-    line-height: 1.1;
-  }
-  
-  /* Format links & buttons */
-  a, a:visited {
-    color: var(--text);
-    text-decoration: none;
-  }
-  
-  a:hover, a:active {
-    text-decoration: underline;
-  }
-  
-  /* Set the cursor to '?' while hovering over an abbreviation */
-  abbr {
-    cursor: help;
-  }
-  
-  /* Format navigation */
-  header > nav {
-    padding: 1rem 0 0 0;
-    grid-column: 2;
-    width: 100%;
-  }
-
-  header > nav a,
-  header > nav a:visited {
-    margin: 0 0.5rem 1rem 0.5rem;
-    border: none;
-    padding: 0;
-    color: var(--header-text);
-    display: inline-block;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  header > nav a:hover {
-    color: var(--header-hover);
-  }
-  
-  header > nav .home a:first-child {
-    margin-left: 0;
-  }
-
-  header > nav .links a:last-child {
-    margin-right: 0;
-  }
-
-  header > nav .links {
-    float: right;
-  }
-  
-  /* Consolidate box styling */
-  aside, details, pre, progress {
-    background: var(--accent-bg);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-  
-  aside {
-    font-size: 1rem;
-    width: 30%;
-    padding: 0 15px;
-    margin-left: 15px;
-    float: right;
-  }
-  
-  /* Make aside full-width on mobile */
-  @media only screen and (max-width: 720px) {
-    aside {
-      width: 100%;
-      float: none;
-      margin-left: 0;
-    }
-  }
-  
-  fieldset {
-    border: 1px solid var(--border);
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
-
-  article > header {
-    margin: 1.25rem 0 2rem 0;
-  }
-
-  article h1,
-  article h2 {
-    margin: 0;
-  }
-
-  article time {
-    margin-top: 0;
-    font-size: 0.8rem;
-    color: var(--text-light);
-  }
-  
-  article.index > header {
-    margin: 0 0 0.5rem;
-  }
-
-  article, section {
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  section {
-    margin-bottom: 1rem;
-  }
-
-  article.index:first-of-type {
-    border-top: 1px solid var(--border);
-    padding-top: 1rem;
-  }
-
-  /* article.index:last-of-type {
-    border-bottom: 0;
-    padding-bottom: 0;
-  } */
-
-  main p > a, main p > a:visited {
-    text-decoration: underline;
-  }
-
-  article.index p {
-    margin: 0;
-  }
-
-  article .more {
-    text-decoration: underline;
-    font-size: 0.8rem;
-  }
-  
-  details {
-    padding: 0.7rem 1rem;
-  }
-  
-  summary {
-    cursor: pointer;
-    font-weight: bold;
-    padding: 0.7rem 1rem;
-    margin: -0.7rem -1rem;
-    word-break: break-all;
-  }
-  
-  details[open] > summary + * {
-    margin-top: 0;
-  }
-  
-  details[open] > summary {
-    margin-bottom: 0.5rem;
-  }
-  
-  details[open] > :last-child {
-    margin-bottom: 0;
-  }
-  
-  /* Format tables */
-  table {
-    border-collapse: collapse;
-    display: block;
-    margin: 1.5rem 0;
-    overflow: auto;
-    width: 100%;
-  }
-  
-  td,
-  th {
-    border: 1px solid var(--border);
-    text-align: left;
-    padding: 0.5rem;
-  }
-  
-  th {
-    background: var(--accent-bg);
-    font-weight: bold;
-  }
-  
-  tr:nth-child(even) {
-    /* Set every other cell slightly darker. Improves readability. */
-    background: var(--accent-bg);
-  }
-  
-  table caption {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Misc body elements */
-  hr {
-    color: var(--border);
-    border-top: 1px;
-    margin: 1rem auto;
-  }
-  
-  mark {
-    padding: 2px 5px;
-    border-radius: 4px;
-    background: var(--marked);
-  }
-  
+  /* Add a bit of transparency so light media isn't so glaring in dark mode */
   img,
   video {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
+    opacity: 0.8;
   }
-  
-  figure {
-    margin: 0;
-    text-align: center;
-  }
-  
-  figcaption {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-  }
-  
-  blockquote {
-    margin: 2rem 0 2rem 2rem;
-    padding: 0.4rem 0.8rem;
-    border-left: 0.35rem solid var(--accent);
-    color: var(--text-light);
-    font-style: italic;
-  }
-  
-  cite {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    font-style: normal;
-  }
-  
-  dt {
-      color: var(--text-light);
-  }
-  
-  /* Use mono font for code elements */
-  code,
-  pre,
-  pre span,
-  kbd,
-  samp {
-    font-family: var(--mono-font);
-    color: var(--code);
-  }
-  
-  kbd {
-    color: var(--preformatted);
-    border: 1px solid var(--preformatted);
-    border-bottom: 3px solid var(--preformatted);
-    border-radius: 5px;
-    padding: 0.1rem 0.4rem;
-  }
-  
-  pre {
-    padding: 1rem 1.4rem;
-    max-width: 100%;
-    overflow: auto;
-    color: var(--preformatted);
-  }
-  
-  /* Fix embedded code within pre */
-  pre code {
-    color: var(--preformatted);
-    background: none;
-    margin: 0;
-    padding: 0;
-  }
+}
 
-  /* RSS */
-  .rss {
-    float: right;
-    padding: 0.2rem 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: bold;
+/* Reset box-sizing */
+  *, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Reset default appearance */
+textarea,
+select,
+input,
+progress {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+html {
+  /* Set the font globally */
+  font-family: var(--sans-font);
+  scroll-behavior: smooth;
+}
+
+/* Make the body a nice central block */
+body {
+  color: var(--text);
+  background: var(--bg);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Make the header bg full width, but the content inline with body */
+body > header {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr min(45rem, 90%) 1fr;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr min(45rem, 90%) 1fr;
+}
+
+main > * {
+  grid-column: 2;
+}
+
+body > footer {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+footer img {
+  width: 13%;
+}
+
+/* Make aside full-width on mobile */
+@media only screen and (max-width: 720px) {
+  footer img {
+    width: 46%;
   }
+}
+
+  footer a, footer a:visited {
+  color: var(--text-light);
+}
+
+footer a {
+  margin-right: 1em;
+}
+
+footer a:last-child {
+  margin-right: 0;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+/* Format headers */
+h1 {
+  font-size: 2.25rem;
+  margin: 1.25rem 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0 0;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin: 1rem 0 0 0;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+h6 {
+  font-size: 0.96rem;
+}
+
+/* Prevent long strings from overflowing container */
+  p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* Fix line height when title wraps */
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+}
+
+/* Format links & buttons */
+  a, a:visited {
+  color: var(--text);
+  text-decoration: none;
+}
+
+  a:hover, a:active {
+  text-decoration: underline;
+}
+
+/* Set the cursor to '?' while hovering over an abbreviation */
+abbr {
+  cursor: help;
+}
+
+/* Format navigation */
+header > nav {
+  padding: 1rem 0 0 0;
+  grid-column: 2;
+  width: 100%;
+}
+
+header > nav a,
+header > nav a:visited {
+  margin: 0 0.5rem 1rem 0.5rem;
+  border: none;
+  padding: 0;
+  color: var(--header-text);
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header > nav a:hover {
+  color: var(--header-hover);
+}
+
+header > nav .home a:first-child {
+  margin-left: 0;
+}
+
+header > nav .links a:last-child {
+  margin-right: 0;
+}
+
+header > nav .links {
+  float: right;
+}
+
+/* Consolidate box styling */
+  aside, details, pre, progress {
+  background: var(--accent-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+aside {
+  font-size: 1rem;
+  width: 30%;
+  padding: 0 15px;
+  margin-left: 15px;
+  float: right;
+}
+
+/* Make aside full-width on mobile */
+@media only screen and (max-width: 720px) {
+  aside {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+  }
+}
+
+fieldset {
+  border: 1px solid var(--border);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+article > header {
+  margin: 1.25rem 0 2rem 0;
+}
+
+article h1,
+article h2 {
+  margin: 0;
+}
+
+article time {
+  margin-top: 0;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+article.index > header {
+  margin: 0 0 0.5rem;
+}
+
+  article, section {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+section {
+  margin-bottom: 1rem;
+}
+
+article.index:first-of-type {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+  main p > a, main p > a:visited {
+  text-decoration: underline;
+}
+
+article.index p {
+  margin: 0;
+}
+
+article .more {
+  text-decoration: underline;
+  font-size: 0.8rem;
+}
+
+details {
+  padding: 0.7rem 1rem;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0.7rem 1rem;
+  margin: -0.7rem -1rem;
+  word-break: break-all;
+}
+
+details[open] > summary + * {
+  margin-top: 0;
+}
+
+details[open] > summary {
+  margin-bottom: 0.5rem;
+}
+
+details[open] > :last-child {
+  margin-bottom: 0;
+}
+
+/* Format tables */
+table {
+  border-collapse: collapse;
+  display: block;
+  margin: 1.5rem 0;
+  overflow: auto;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid var(--border);
+  text-align: left;
+  padding: 0.5rem;
+}
+
+th {
+  background: var(--accent-bg);
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  /* Set every other cell slightly darker. Improves readability. */
+  background: var(--accent-bg);
+}
+
+table caption {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Misc body elements */
+hr {
+  color: var(--border);
+  border-top: 1px;
+  margin: 1rem auto;
+}
+
+mark {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--marked);
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+figure {
+  margin: 0;
+  text-align: center;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  margin: 2rem 0 2rem 2rem;
+  padding: 0.4rem 0.8rem;
+  border-left: 0.35rem solid var(--accent);
+  color: var(--text-light);
+  font-style: italic;
+}
+
+cite {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-style: normal;
+}
+
+dt {
+  color: var(--text-light);
+}
+
+/* Use mono font for code elements */
+code,
+pre,
+pre span,
+kbd,
+samp {
+  font-family: var(--mono-font);
+  color: var(--code);
+}
+
+kbd {
+  color: var(--preformatted);
+  border: 1px solid var(--preformatted);
+  border-bottom: 3px solid var(--preformatted);
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+}
+
+pre {
+  padding: 1rem 1.4rem;
+  max-width: 100%;
+  overflow: auto;
+  color: var(--preformatted);
+}
+
+/* Fix embedded code within pre */
+pre code {
+  color: var(--preformatted);
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* RSS */
+.rss {
+  float: right;
+  padding: 0.2rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
 
   .rss:link, .rss:visited, .rss:hover, .rss:active {
-    color: #ffffff;
-    text-decoration: none;
-  }
+  color: #ffffff;
+  text-decoration: none;
+}
 
   .rss:link, .rss:visited {
-    background: #ff6600;
-  }
+  background: #ff6600;
+}
 
   .rss:hover, .rss:active {
-    background: #ff8822;
-  }
+  background: #ff8822;
+}
 
-  #aboutPhoto {
-    float: right;
-    width: 39%;
-    border: 3px double #ccc;
-    margin: .3rem 0 2rem 1rem;
-  }
+#aboutPhoto {
+  float: right;
+  width: 39%;
+  border: 3px double #ccc;
+  margin: 0.3rem 0 2rem 1rem;
+}
