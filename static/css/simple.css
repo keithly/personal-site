@@ -1,12 +1,9 @@
-/* Global variables. */
 :root {
-  /* Set sans-serif & mono fonts */
   --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
     "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
     "Helvetica Neue", sans-serif;
   --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 
-  /* Default (light) theme */
   --bg: #f9f9f5;
   --accent-bg: #ecc8c3;
   --header-bg: #ab4a38;
@@ -20,11 +17,9 @@
   --preformatted: #444;
   --marked: #ffdd33;
   --disabled: #efefef;
-  /* Brightness filter is applied on header links in hover state */
   --hover-brightness: brightness(0.6);
 }
 
-/* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
@@ -39,22 +34,18 @@
     --code: #f06292;
     --preformatted: #ccc;
     --disabled: #111;
-    /* Brightness filter in hover state is updated to improve visibility in dark-mode */
     --hover-brightness: brightness(1.4);
   }
-  /* Add a bit of transparency so light media isn't so glaring in dark mode */
   img,
   video {
     opacity: 0.8;
   }
 }
 
-/* Reset box-sizing */
   *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Reset default appearance */
 textarea,
 select,
 input,
@@ -65,12 +56,10 @@ progress {
 }
 
 html {
-  /* Set the font globally */
   font-family: var(--sans-font);
   scroll-behavior: smooth;
 }
 
-/* Make the body a nice central block */
 body {
   color: var(--text);
   background: var(--bg);
@@ -79,7 +68,6 @@ body {
   margin: 0;
 }
 
-/* Make the header bg full width, but the content inline with body */
 body > header {
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
@@ -107,7 +95,6 @@ footer img {
   width: 13%;
 }
 
-/* Make aside full-width on mobile */
 @media only screen and (max-width: 720px) {
   footer img {
     width: 46%;
@@ -130,7 +117,6 @@ p {
   margin: 1rem 0;
 }
 
-/* Format headers */
 h1 {
   font-size: 2.25rem;
   margin: 1.25rem 0;
@@ -158,19 +144,16 @@ h6 {
   font-size: 0.96rem;
 }
 
-/* Prevent long strings from overflowing container */
   p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
-/* Fix line height when title wraps */
 h1,
 h2,
 h3 {
   line-height: 1.1;
 }
 
-/* Format links & buttons */
   a, a:visited {
   color: var(--text);
   text-decoration: none;
@@ -180,12 +163,10 @@ h3 {
   text-decoration: underline;
 }
 
-/* Set the cursor to '?' while hovering over an abbreviation */
 abbr {
   cursor: help;
 }
 
-/* Format navigation */
 header > nav {
   padding: 1rem 0 0 0;
   grid-column: 2;
@@ -219,7 +200,6 @@ header > nav .links {
   float: right;
 }
 
-/* Consolidate box styling */
   aside, details, pre, progress {
   background: var(--accent-bg);
   border: 1px solid var(--border);
@@ -235,7 +215,6 @@ aside {
   float: right;
 }
 
-/* Make aside full-width on mobile */
 @media only screen and (max-width: 720px) {
   aside {
     width: 100%;
@@ -322,7 +301,6 @@ details[open] > :last-child {
   margin-bottom: 0;
 }
 
-/* Format tables */
 table {
   border-collapse: collapse;
   display: block;
@@ -344,7 +322,6 @@ th {
 }
 
 tr:nth-child(even) {
-  /* Set every other cell slightly darker. Improves readability. */
   background: var(--accent-bg);
 }
 
@@ -353,7 +330,6 @@ table caption {
   margin-bottom: 0.5rem;
 }
 
-/* Misc body elements */
 hr {
   color: var(--border);
   border-top: 1px;
@@ -402,7 +378,6 @@ dt {
   color: var(--text-light);
 }
 
-/* Use mono font for code elements */
 code,
 pre,
 pre span,
@@ -427,7 +402,6 @@ pre {
   color: var(--preformatted);
 }
 
-/* Fix embedded code within pre */
 pre code {
   color: var(--preformatted);
   background: none;
@@ -435,7 +409,6 @@ pre code {
   padding: 0;
 }
 
-/* RSS */
 .rss {
   float: right;
   padding: 0.2rem 0.25rem;
