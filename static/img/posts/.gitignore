@@ -1,0 +1,4 @@
+# Blocklist files/folders in same directory as the .gitignore file
+/*
+
+!.gitignore
