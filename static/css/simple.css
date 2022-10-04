@@ -12,10 +12,11 @@
   --text: #212121;
   --text-light: #585858;
   --border: #dedede;
+  --img-border: #ccc;
   --accent: var(--header-bg);
   --code: #d81b60;
   --preformatted: #444;
-  --marked: #ffdd33;
+  --marked: #fd3;
   --disabled: #efefef;
   --hover-brightness: brightness(0.6);
 }
@@ -115,6 +116,24 @@ footer a:last-child {
 
 p {
   margin: 1rem 0;
+}
+
+p > img, article > figure {
+  float: right;
+  margin: 0.3rem 0 0.3rem 1rem;
+}
+
+p > img, figure img {
+  border: 3px double var(--img-border);
+}
+
+article > figure figcaption {
+  margin-bottom: 0;
+}
+
+#aboutPhoto {
+  width: 39%;
+  margin: 0.3rem 0 2rem 1rem;
 }
 
 h1 {
@@ -418,21 +437,14 @@ pre code {
 }
 
   .rss:link, .rss:visited, .rss:hover, .rss:active {
-  color: #ffffff;
+  color: #fff;
   text-decoration: none;
 }
 
   .rss:link, .rss:visited {
-  background: #ff6600;
+  background: #f60;
 }
 
   .rss:hover, .rss:active {
-  background: #ff8822;
-}
-
-#aboutPhoto {
-  float: right;
-  width: 39%;
-  border: 3px double #ccc;
-  margin: 0.3rem 0 2rem 1rem;
+  background: #f82;
 }
