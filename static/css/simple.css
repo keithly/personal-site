@@ -1,8 +1,7 @@
 :root {
-  --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir,
-    "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
-    "Helvetica Neue", sans-serif;
-  --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  --sans-font: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
+    "Noto Sans", "Nimbus Sans L", Roboto, "Segoe UI", Arial, sans-serif;
+  --mono-font: "Fira Code", 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Andale Mono", "Noto Sans Mono", "Ubuntu Mono", monospace;
 
   --bg: #f9f9f5;
   --accent-bg: #ecc8c3;
