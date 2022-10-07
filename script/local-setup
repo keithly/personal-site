@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+echo "Python environment: "
+python -V
+
+if [ -z "$VIRTUAL_ENV" ]; then
+    echo "No virtulenv found, exiting"
+    return 1
+else
+    echo "$VIRTUAL_ENV"
+fi
+
+python -m pip install -U pip-tools
+python -m piptools compile -v -o requirements.txt pyproject.toml --resolver backtracking --generate-hashes --upgrade
+python -m piptools sync
