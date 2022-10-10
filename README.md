@@ -29,12 +29,12 @@ A non-exhaustive list:
 
 - `make` is replaced with bash scripts and a github workflow.
 - No attempt is made to remain compatible with pure POSIX or with unsupported Python versions.
-- [Markdown](https://commonmark.org/) is the assumed format for all posts, and [markdown-it-py](https://markdown-it-py.readthedocs.io/en/latest/) replaces the deprecated [commonmark](https://commonmarkpy.readthedocs.io/en/latest/index.html) This also enables smart quotes and other typographic niceties.
+- [Markdown](https://commonmark.org/) is the assumed format for all posts, and [markdown-it-py](https://markdown-it-py.readthedocs.io/en/latest/) replaces the deprecated [commonmark](https://commonmarkpy.readthedocs.io/en/latest/index.html). This also enables smart quotes and other typographic niceties.
 - A post summary contains the first paragraph of the post, and it will render markdown and html.
 - Tests use pytest and have been rewritten for it as needed.
 - A working directory path is configured, primarily so tests can always use a proper tmp directory and not touch the actual site output when run.
 - The home page is the blog index page.
-- `page.html` has a more modern and extensive set of `<head>` elements, including favicons. 
+- The `page.html` template has a more modern and extensive set of `<head>` elements, including favicons. 
 - It almost goes without saying, but the design of the site is different. CSS is based on the original file and [simple.css](https://simplecss.org/), but it has diverged greatly. 
 
 ## License

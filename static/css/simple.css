@@ -122,7 +122,7 @@ p > img, article > figure {
   margin: 0.3rem 0 0.3rem 1rem;
 }
 
-p > img, figure img {
+p > img, figure img, #aboutPhoto {
   border: 3px double var(--img-border);
 }
 
@@ -131,6 +131,7 @@ article > figure figcaption {
 }
 
 #aboutPhoto {
+  float: right;
   width: 39%;
   margin: 0.3rem 0 2rem 1rem;
 }
