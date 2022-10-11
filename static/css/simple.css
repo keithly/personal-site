@@ -4,7 +4,7 @@
   --mono-font: "Fira Code", "SF Mono", SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, "Andale Mono", "Noto Sans Mono", "Ubuntu Mono", monospace;
 
   --bg: #f9f9f5;
-  --accent-bg: #ecc8c3;
+  --accent-bg: #f8e6e3;
   --header-bg: #ab4a38;
   --header-hover: var(--header-text);
   --header-text: #fff;
@@ -13,7 +13,7 @@
   --border: #dedede;
   --img-border: #ccc;
   --accent: var(--header-bg);
-  --code: #d81b60;
+  --code: var(--header-bg);
   --preformatted: #444;
   --marked: #fd3;
   --disabled: #efefef;
@@ -31,7 +31,7 @@
     --text: #d2cec8;
     --text-light: #ababab;
     --border: #666;
-    --code: #f06292;
+    --code: #f47c6c;
     --preformatted: #ccc;
     --disabled: #111;
     --hover-brightness: brightness(1.4);
