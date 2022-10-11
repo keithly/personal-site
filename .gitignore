@@ -1,11 +1,13 @@
-_site
+/_site/
 *.pyc
 __pycache__
-.pytest_cache/
+/.pytest_cache/
 .coverage
 htmlcov
 *.sw?
 .DS_Store
 venv
 *.egg-info
-mydir
+/mydir/
+/static/img/posts/
+/content/blog/
