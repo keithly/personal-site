@@ -57,8 +57,8 @@ def test_default_params(setup_content_site_path: Path, tmp_path: Path):
     assert "<title>Test Post &ndash; Keith R. Petersen</title>" in s1
     assert "2018-01-01" in s1
 
-    assert "<link>http://localhost:8000/</link>" in s2
-    assert "<link>http://localhost:8000/blog/test-post/</link>" in s2
+    assert "<link>https://www.keithrpetersen.com/</link>" in s2
+    assert "<link>https://www.keithrpetersen.com/blog/test-post/</link>" in s2
 
 
 def test_json_params(setup_content_site_path: Path, tmp_path: Path):

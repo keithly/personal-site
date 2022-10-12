@@ -192,7 +192,7 @@ def main(working_path: Path = Path.cwd()):
         "base_path": "",
         "subtitle": "Software Engineer",
         "author": "Keith R. Petersen",
-        "site_url": "http://localhost:8000",
+        "site_url": "https://www.keithrpetersen.com",
         "current_year": datetime.datetime.now().year,
     }
 
