@@ -153,6 +153,11 @@ def make_pages(src, dst, layout, **params):
 
         items.append(content)
 
+        if page_params.get("canonical_url"):
+            page_params["canonical_url"] = render(
+                page_params["canonical_url"], **page_params
+            )
+
         dst_path = render(dst, **page_params)
         output = render(layout, **page_params)
 
@@ -220,6 +225,7 @@ def main(working_path: Path = Path.cwd()):
         post_layout,
         blog="blog",
         **params,
+        canonical_url=params["site_url"] + "/{{ slug }}/",
     )
 
     # Create blog list pages.
@@ -230,6 +236,7 @@ def main(working_path: Path = Path.cwd()):
         item_layout,
         blog="blog",
         title="Blog",
+        canonical_url=f"{params['site_url']}/",
         **params,
     )
 
@@ -249,6 +256,7 @@ def main(working_path: Path = Path.cwd()):
         f"{working_path}/content/[!_]*.html",
         output_path.as_posix() + "/{{ slug }}/index.html",
         page_layout,
+        canonical_url=params["site_url"] + "/{{ slug }}/",
         **params,
     )
 

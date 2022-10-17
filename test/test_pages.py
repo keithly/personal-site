@@ -133,3 +133,24 @@ class PagesTest(unittest.TestCase):
                 f.read(),
                 "<div><p>{{ title }}:{{ author }}:Foo</p><p>bar:Admin:Bar</p></div>",
             )
+
+    def test_pages_canonical_slug_params(self):
+        src = os.path.join(self.blog_path, "2*.txt")
+        dst = os.path.join(self.site_path, "{{ slug }}.txt")
+        tpl = "<div>{{ slug }}:{{ canonical_url }}:{{ date }}:{{ content }}</div>"
+        params = {
+            "site_url": "https://www.keithrpetersen.com",
+        }
+        makesite.make_pages(
+            src, dst, tpl, **params, canonical_url=params["site_url"] + "/{{ slug }}/"
+        )
+        with open(os.path.join(self.site_path, "foo.txt")) as f:
+            self.assertEqual(
+                f.read(),
+                "<div>foo:https://www.keithrpetersen.com/foo/:2018-01-01:<p>Foo</p>\n</div>",
+            )
+        with open(os.path.join(self.site_path, "bar.txt")) as f:
+            self.assertEqual(
+                f.read(),
+                "<div>bar:https://www.keithrpetersen.com/bar/:2018-01-02:<p>Bar</p>\n</div>",
+            )
