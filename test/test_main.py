@@ -47,11 +47,8 @@ def test_default_params(setup_content_site_path: Path, tmp_path: Path):
 
     makesite.main(tmp_path)
 
-    with open(f"{output_path}/blog/test-post/index.html") as f:
-        s1 = f.read()
-
-    with open(f"{output_path}/rss.xml") as f:
-        s2 = f.read()
+    s1 = Path(output_path / "blog/test-post/index.html").read_text()
+    s2 = Path(output_path / "rss.xml").read_text()
 
     assert '<a href="/">Keith R. Petersen</a>' in s1
     assert "<title>Test Post &ndash; Keith R. Petersen</title>" in s1
@@ -71,16 +68,12 @@ def test_json_params(setup_content_site_path: Path, tmp_path: Path):
         "author": "Bar",
         "site_url": "http://localhost/base",
     }
-    with open(params_path, "w") as f:
-        json.dump(params, f)
+    params_path.write_text(json.dumps(params))
 
     makesite.main(tmp_path)
 
-    with open(f"{output_path}/blog/test-post/index.html") as f:
-        s1 = f.read()
-
-    with open(f"{output_path}/rss.xml") as f:
-        s2 = f.read()
+    s1 = Path(output_path / "blog/test-post/index.html").read_text()
+    s2 = Path(output_path / "rss.xml").read_text()
 
     assert '<a href="/base/">Keith R. Petersen</a>' in s1
     assert "<title>Test Post &ndash; Keith R. Petersen</title>" in s1
