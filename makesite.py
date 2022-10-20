@@ -45,13 +45,7 @@ from lxml import html
 from markdown_it import MarkdownIt
 
 
-def fread(filename):
-    """Read file and close the file."""
-    with open(filename, "r") as f:
-        return f.read()
-
-
-def fwrite(filename, text):
+def fwrite(filename: str, text: str) -> None:
     """Write content to file and close the file."""
     basedir = os.path.dirname(filename)
     if not os.path.isdir(basedir):
@@ -61,12 +55,12 @@ def fwrite(filename, text):
         f.write(text)
 
 
-def log(msg, *args):
+def log(msg: str, *args):
     """Log message with specified arguments."""
     sys.stdout.write(msg.format(*args) + "\n")
 
 
-def get_post_first_p(text):
+def get_post_first_p(text: str) -> str:
     """Get the first p from the post as html."""
     rendered_html = render_md(text)
     tree = html.fromstring(rendered_html)
@@ -77,7 +71,7 @@ def get_post_first_p(text):
     return first_p
 
 
-def read_headers(text):
+def read_headers(text: str):
     """Parse headers in text and yield (key, value, end-index) tuples."""
     for match in re.finditer(r"\s*<!--\s*(.+?)\s*:\s*(.+?)\s*-->\s*|.+", text):
         if not match.group(1):
@@ -85,22 +79,22 @@ def read_headers(text):
         yield match.group(1), match.group(2), match.end()
 
 
-def rfc_2822_format(date_str):
+def rfc_2822_format(date_str: str) -> str:
     """Convert yyyy-mm-dd date string to RFC 2822 format date string."""
     d = datetime.datetime.strptime(date_str, "%Y-%m-%d")
     return d.strftime("%a, %d %b %Y %H:%M:%S +0000")
 
 
-def render_md(input):
+def render_md(input: str) -> str:
     md = MarkdownIt("commonmark", {"typographer": True})
     md.enable(["replacements", "smartquotes"])
     return md.render(input)
 
 
-def read_content(filename):
+def read_content(filename: str):
     """Read content and metadata from file into a dictionary."""
     # Read file content.
-    text = fread(filename)
+    text = Path(filename).read_text()
 
     # Read metadata and save it in a dictionary.
     date_slug = os.path.basename(filename).split(".")[0]
@@ -127,7 +121,7 @@ def read_content(filename):
     return content
 
 
-def render(template, **params):
+def render(template: str, **params) -> str:
     """Replace placeholders in template with values from params."""
     return re.sub(
         r"{{\s*([^}\s]+)\s*}}",
@@ -136,7 +130,7 @@ def render(template, **params):
     )
 
 
-def make_pages(src, dst, layout, **params):
+def make_pages(src: str, dst: str, layout: str, **params):
     """Generate pages from page content."""
     items = []
 
@@ -167,7 +161,7 @@ def make_pages(src, dst, layout, **params):
     return sorted(items, key=lambda x: x["date"], reverse=True)
 
 
-def make_list(posts, dst, list_layout, item_layout, **params):
+def make_list(posts, dst: str, list_layout: str, item_layout: str, **params) -> None:
     """Generate list page for a blog."""
     items = []
     for post in posts:
@@ -188,7 +182,7 @@ def main(working_path: Path = Path.cwd()):
     output_path = working_path / "_site"
 
     # Create a new _site directory from scratch.
-    if os.path.isdir(output_path):
+    if output_path.is_dir():
         shutil.rmtree(output_path)
     shutil.copytree("static", output_path)
 
@@ -204,15 +198,15 @@ def main(working_path: Path = Path.cwd()):
     # If params.json exists, load it.
     params_path = working_path / "params.json"
     if params_path.exists():
-        params.update(json.loads(fread(params_path)))
+        params.update(json.loads(params_path.read_text()))
 
     # Load layouts.
-    page_layout = fread("layout/page.html")
-    post_layout = fread("layout/post.html")
-    list_layout = fread("layout/list.html")
-    item_layout = fread("layout/item.html")
-    feed_xml = fread("layout/feed.xml")
-    item_xml = fread("layout/item.xml")
+    page_layout = Path("layout/page.html").read_text()
+    post_layout = Path("layout/post.html").read_text()
+    list_layout = Path("layout/list.html").read_text()
+    item_layout = Path("layout/item.html").read_text()
+    feed_xml = Path("layout/feed.xml").read_text()
+    item_xml = Path("layout/item.xml").read_text()
 
     # Combine layouts to form final layouts.
     post_layout = render(page_layout, content=post_layout)

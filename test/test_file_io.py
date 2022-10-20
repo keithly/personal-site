@@ -4,16 +4,6 @@ from pathlib import Path
 import makesite
 
 
-def test_fread(tmp_path: Path):
-    text = "foo\nbar\n"
-    filepath = tmp_path / "foo.txt"
-    filepath.write_text(text)
-
-    text_read = makesite.fread(filepath)
-
-    assert text_read == text
-
-
 def test_fwrite(tmp_path: Path):
     text = "baz\nqux\n"
     filepath = tmp_path / "foo.txt"
