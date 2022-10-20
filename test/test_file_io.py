@@ -32,5 +32,5 @@ def test_fwrite_makedir(tmp_path: Path):
     makesite.fwrite(filepath, text)
 
     text_read = filepath.read_text()
-    assert dirpath.is_dir() is True
+    assert dirpath.is_dir()
     assert text_read == text

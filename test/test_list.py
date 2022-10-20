@@ -1,48 +1,49 @@
-import unittest
-import shutil
-import os
+from pathlib import Path
 import makesite
-from test import path
+
+import pytest
 
 
-class PagesTest(unittest.TestCase):
-    def setUp(self):
-        self.site_path = path.temppath("site")
+@pytest.fixture
+def output(tmp_path: Path):
+    o_path = tmp_path / "site"
+    o_path.mkdir()
+    return o_path
 
-    def tearDown(self):
-        shutil.rmtree(self.site_path)
 
-    def test_list(self):
-        posts = [{"content": "Foo"}, {"content": "Bar"}]
-        dst = os.path.join(self.site_path, "list.txt")
-        list_layout = "<div>{{ content }}</div>"
-        item_layout = "<p>{{ content }}</p>"
-        makesite.make_list(posts, dst, list_layout, item_layout)
-        with open(os.path.join(self.site_path, "list.txt")) as f:
-            self.assertEqual(f.read(), "<div><p>Foo</p><p>Bar</p></div>")
+def test_list(output: Path):
+    posts = [{"content": "Foo"}, {"content": "Bar"}]
+    dst = Path(output / "list.html")
+    list_layout = "<div>{{ content }}</div>"
+    item_layout = "<p>{{ content }}</p>"
 
-    def test_list_params(self):
-        posts = [{"content": "Foo", "title": "foo"}, {"content": "Bar", "title": "bar"}]
-        dst = os.path.join(self.site_path, "list.txt")
-        list_layout = "<div>{{ key }}:{{ title }}:{{ content }}</div>"
-        item_layout = "<p>{{ key }}:{{ title }}:{{ content }}</p>"
-        makesite.make_list(
-            posts, dst, list_layout, item_layout, key="val", title="lorem"
-        )
-        with open(os.path.join(self.site_path, "list.txt")) as f:
-            text = f.read()
-        self.assertEqual(
-            text, "<div>val:lorem:<p>val:foo:Foo</p><p>val:bar:Bar</p></div>"
-        )
+    makesite.make_list(posts, dst.as_posix(), list_layout, item_layout)
 
-    def test_dst_params(self):
-        posts = [{"content": "Foo"}, {"content": "Bar"}]
-        dst = os.path.join(self.site_path, "{{ key }}.txt")
-        list_layout = "<div>{{ content }}</div>"
-        item_layout = "<p>{{ content }}</p>"
-        makesite.make_list(posts, dst, list_layout, item_layout, key="val")
+    assert dst.read_text() == "<div><p>Foo</p><p>Bar</p></div>"
 
-        expected_path = os.path.join(self.site_path, "val.txt")
-        self.assertTrue(os.path.isfile(expected_path))
-        with open(expected_path) as f:
-            self.assertEqual(f.read(), "<div><p>Foo</p><p>Bar</p></div>")
+
+def test_list_params(output: Path):
+    posts = [{"content": "Foo", "title": "foo"}, {"content": "Bar", "title": "bar"}]
+    dst = Path(output / "list.html")
+    list_layout = "<div>{{ key }}:{{ title }}:{{ content }}</div>"
+    item_layout = "<p>{{ key }}:{{ title }}:{{ content }}</p>"
+
+    makesite.make_list(
+        posts, dst.as_posix(), list_layout, item_layout, key="val", title="lorem"
+    )
+
+    text = dst.read_text()
+    assert text == "<div>val:lorem:<p>val:foo:Foo</p><p>val:bar:Bar</p></div>"
+
+
+def test_dst_params(output: Path):
+    posts = [{"content": "Foo"}, {"content": "Bar"}]
+    dst = Path(output / "{{ key }}.html").as_posix()
+    list_layout = "<div>{{ content }}</div>"
+    item_layout = "<p>{{ content }}</p>"
+
+    makesite.make_list(posts, dst, list_layout, item_layout, key="val")
+
+    expected_path = Path(output / "val.html")
+    assert expected_path.is_file()
+    assert expected_path.read_text() == "<div><p>Foo</p><p>Bar</p></div>"

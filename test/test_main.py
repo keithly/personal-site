@@ -34,7 +34,7 @@ def test_site_exists(setup_content_site_path: Path, tmp_path: Path):
     also acts as an integration test
     """
 
-    file_path = setup_content_site_path / "foo.txt"
+    file_path = setup_content_site_path / "foo.md"
     file_path.write_text("foo")
 
     assert file_path.is_file()
