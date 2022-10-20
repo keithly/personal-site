@@ -63,7 +63,7 @@ def fwrite(filename, text):
 
 def log(msg, *args):
     """Log message with specified arguments."""
-    sys.stderr.write(msg.format(*args) + "\n")
+    sys.stdout.write(msg.format(*args) + "\n")
 
 
 def get_post_first_p(text):
