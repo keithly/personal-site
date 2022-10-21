@@ -45,7 +45,7 @@ from lxml import html
 from markdown_it import MarkdownIt
 
 
-def fwrite(filename: str, text: str) -> None:
+def fwrite(filename: str | Path, text: str) -> None:
     """Write content to file and close the file."""
     basedir = os.path.dirname(filename)
     if not os.path.isdir(basedir):
