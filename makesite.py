@@ -219,7 +219,7 @@ def main(working_path: Path = Path.cwd()):
         post_layout,
         blog="blog",
         **params,
-        canonical_url=params["site_url"] + "/{{ slug }}/",
+        canonical_url=params["site_url"] + "/blog/{{ slug }}/",
     )
 
     # Create blog list pages.
