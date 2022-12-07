@@ -8,7 +8,7 @@ echo "Python environment: "
 python -V
 
 if [ -z "$VIRTUAL_ENV" ]; then
-    echo "No virtulenv found, exiting"
+    echo "No virtualenv found, exiting"
     return 1
 fi
 
