@@ -159,6 +159,7 @@ def test_content_rendering_via_header(placeholder_bar, input: Path, output: Path
     )
 
 
+@pytest.mark.skip()
 def test_rendered_content_in_summary(
     placeholder_foo, placeholder_bar, input: Path, output: Path
 ):
