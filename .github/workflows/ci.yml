@@ -2,7 +2,7 @@ name: personal_site
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
 
 permissions:
@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11.1"
-        cache: "pip"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.2"
+          cache: "pip"
 
-    - name: Install dependencies
-      run: ./script/gh-dependencies
+      - name: Install dependencies
+        run: ./script/gh-dependencies
 
-    - name: Lint
-      run: ./script/lint
+      - name: Lint
+        run: ./script/lint
 
-    - name: Test with pytest
-      run: ./script/test
+      - name: Test with pytest
+        run: ./script/test
