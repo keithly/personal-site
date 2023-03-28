@@ -263,9 +263,9 @@ pytest-cov==4.0.0 \
     --hash=sha256:2feb1b751d66a8bd934e5edfa2e961d11309dc37b73b0eabe73b5945fee20f6b \
     --hash=sha256:996b79efde6433cdbd0088872dbc5fb3ed7fe1578b68cdbba634f14bb8dd0470
     # via personal-site (pyproject.toml)
-types-lxml==2023.2.11 \
-    --hash=sha256:89a8a7c7540f0ac87354f510c80b1a3bf853ec403c96b7999e01ee9cd1a642fe \
-    --hash=sha256:b9ec152c45228f09f7c92a2f3a1a49be45fafe53246c296e055c3b320356afa8
+types-lxml==2023.3.28 \
+    --hash=sha256:8b072a331520582f2d7c44110a53885605679ee79a09d39ef59b1abfc6109380 \
+    --hash=sha256:f1b5867e8ff5be5084916738dfc1cb9e003ae6350e97c74d00929f5910965558
     # via personal-site (pyproject.toml)
 typing-extensions==4.5.0 \
     --hash=sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb \
