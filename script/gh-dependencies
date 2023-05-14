@@ -4,8 +4,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-echo "Installing pip and setuptools..."
-python -m pip install pip==23.0.1 setuptools==67.6.0 wheel==0.38.4
+. script/install-packaging
 
 echo "Installing requirements..."
 python -m pip install -r requirements.txt --require-hashes
