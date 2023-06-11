@@ -4,15 +4,8 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-echo "Python environment: "
-python -V
-
-if [ -z "$VIRTUAL_ENV" ]; then
-    echo "No virtualenv found, exiting"
-    return 1
-fi
-
-echo "$VIRTUAL_ENV"
+python -VV
+echo "Virtual env path: $VIRTUAL_ENV"
 
 . script/install-packaging
 
