@@ -9,6 +9,6 @@ echo "Virtual env path: $VIRTUAL_ENV"
 
 . script/install-packaging
 
-python -m pip install 'pip-tools>=7.0.0'
+python -m pip install 'pip-tools>=7.3.0'
 python -m piptools compile -v -o requirements.txt pyproject.toml --generate-hashes --upgrade
 python -m piptools sync
