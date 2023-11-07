@@ -17,9 +17,15 @@ jobs:
 
       - name: Set up Python
         uses: actions/setup-python@v4
+        id: setup_python
         with:
           python-version: "3.11.6"
-          cache: "pip"
+
+      - name: Cache virtualenv
+        uses: actions/cache@v3
+        with:
+          key: venv-${{ runner.os }}-${{ steps.setup_python.outputs.python-version}}-${{ hashFiles('requirements.txt') }}
+          path: venv
 
       - name: Install dependencies
         run: ./script/gh-dependencies
