@@ -12,3 +12,4 @@ venv
 /mydir/
 /static/img/posts/
 /content/blog/
+.envrc
