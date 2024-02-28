@@ -230,9 +230,9 @@ types-beautifulsoup4==4.12.0.20240106 \
     --hash=sha256:98d628985b71b140bd3bc22a8cb0ab603c2f2d08f20d37925965eb4a21739be8 \
     --hash=sha256:cbdd60ab8aeac737ac014431b6e921b43e84279c0405fdd25a6900bb0e71da5b
     # via types-lxml
-types-html5lib==1.1.11.20240217 \
-    --hash=sha256:dd556a6ceb7b7ea3b1c0acc39aac76bd3d079da72b192f075d8b1453f17493b5 \
-    --hash=sha256:e7c609fc1cfd33b666c515d15ca28936359c5a56d0b38d5a6266bf2f51caf4ec
+types-html5lib==1.1.11.20240228 \
+    --hash=sha256:22736b7299e605ec4ba539d48691e905fd0c61c3ea610acc59922232dc84cede \
+    --hash=sha256:af5de0125cb0fe5667543b158db83849b22e25c0e36c9149836b095548bf1020
     # via types-beautifulsoup4
 types-lxml==2024.2.9 \
     --hash=sha256:740e3f09ba8e264c81fe0e1ea79171157f42489fab235c92b0d03ca00963b238 \
