@@ -226,9 +226,9 @@ pytest-cov==4.1.0 \
     --hash=sha256:3904b13dfbfec47f003b8e77fd5b589cd11904a21ddf1ab38a64f204d6a10ef6 \
     --hash=sha256:6ba70b9e97e69fcc3fb45bfeab2d0a138fb65c4d0d6a41ef33983ad114be8c3a
     # via personal_site (pyproject.toml)
-types-beautifulsoup4==4.12.0.20240106 \
-    --hash=sha256:98d628985b71b140bd3bc22a8cb0ab603c2f2d08f20d37925965eb4a21739be8 \
-    --hash=sha256:cbdd60ab8aeac737ac014431b6e921b43e84279c0405fdd25a6900bb0e71da5b
+types-beautifulsoup4==4.12.0.20240229 \
+    --hash=sha256:000cdddb8aee4effb45a04be95654de8629fb8594a4f2f1231cff81108977324 \
+    --hash=sha256:e37e4cfa11b03b01775732e56d2c010cb24ee107786277bae6bc0fa3e305b686
     # via types-lxml
 types-html5lib==1.1.11.20240217 \
     --hash=sha256:dd556a6ceb7b7ea3b1c0acc39aac76bd3d079da72b192f075d8b1453f17493b5 \
