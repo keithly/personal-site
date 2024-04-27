@@ -6,4 +6,4 @@ cd "$(dirname "$0")/.."
 
 echo "Installing pip et al..."
 python -m pip install pip==24.0
-python -m pip install setuptools==69.2.0 wheel==0.43.0
+python -m pip install setuptools==69.5.1 wheel==0.43.0
