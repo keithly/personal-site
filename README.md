@@ -27,7 +27,7 @@ There's no hot reload mechanism built in, but something like [entr](https://jvns
 
 A non-exhaustive list:
 
-- `make` is replaced with bash scripts and a github workflow.
+- `make` is replaced with bash scripts and a GitHub workflow.
 - No attempt is made to remain compatible with pure POSIX or with unsupported Python versions.
 - [Markdown](https://commonmark.org/) is the assumed format for all posts, and [markdown-it-py](https://markdown-it-py.readthedocs.io/en/latest/) replaces the deprecated [commonmark](https://commonmarkpy.readthedocs.io/en/latest/index.html). This also enables smart quotes and other typographic niceties.
 - A post summary contains the first paragraph of the post, and it will render markdown and html.
