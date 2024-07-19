@@ -5,5 +5,5 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "Installing pip et al..."
-python -m pip install pip==24.0
-python -m pip install setuptools==70.0.0 wheel==0.43.0
+python -m pip install pip==24.1.2
+python -m pip install setuptools==71.0.4 wheel==0.43.0
