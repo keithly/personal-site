@@ -302,9 +302,9 @@ types-html5lib==1.1.11.20240228 \
     --hash=sha256:22736b7299e605ec4ba539d48691e905fd0c61c3ea610acc59922232dc84cede \
     --hash=sha256:af5de0125cb0fe5667543b158db83849b22e25c0e36c9149836b095548bf1020
     # via types-beautifulsoup4
-types-lxml==2024.4.14 \
-    --hash=sha256:7e5f836067cde4fddce3cdbf2bac7192c764bf5ee6d3eb86c732ad1b84f265c5 \
-    --hash=sha256:dd8105b579925af1b6ae77469f4fc835be3872b15e86cb46ad4fcc33b20c781d
+types-lxml==2024.8.7 \
+    --hash=sha256:9ee5cdb1efd60f6eeb101b78f92591fd99202e4878b46d621b52f6cd67a9c80f \
+    --hash=sha256:a0b8669b2dc57d47dcf31fbbee5007f8ed71b37406f4c7e5fa650e2480568eb9
     # via personal_site (pyproject.toml)
 typing-extensions==4.12.2 \
     --hash=sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d \
